@@ -46,8 +46,7 @@
     </b:if>
     <b:if cond='data:blog.pageType != "error_page"'>
       <meta expr:content="data:blog.metaDescription" name="description" />
-      <b:if cond="data:blog.homepageUrl != data:blog.url">
-        <meta expr:content='data:blog.pageName + ", " + data:blog.pageTitle + ", " + data:blog.title' name="keywords" /> </b:if
+      <b:if cond="data:blog.homepageUrl != data:blog.url"> <meta expr:content='data:blog.pageName + ", " + data:blog.pageTitle + ", " + data:blog.title' name="keywords" /> </b:if
     ></b:if>
     <b:if cond="data:blog.url == data:blog.homepageUrl">
       <meta content="rhesa, sica, rhessica, rhesa-sica, rhesa sica, weekend, week, end, week-end, blog, tech, dota2, twice, technology, game, sharing, tutorial, computer, notebook, laptop, gamer" name="keywords"
@@ -56,8 +55,7 @@
     <link expr:href='data:blog.homepageUrl + "feeds/posts/default?alt=rss"' expr:title='data:blog.title + " - RSS"' rel="alternate" type="application/rss+xml" />
     <link expr:href='"http://www.blogger.com/feeds/" + data:blog.blogId + "/posts/default"' expr:title='data:blog.title + " - Atom"' rel="alternate" type="application/atom+xml" />
     <b:if cond='data:blog.pageType == "item"'>
-      <b:if cond="data:blog.postImageThumbnailUrl">
-        <link expr:href="data:blog.postImageThumbnailUrl" rel="image_src" /> </b:if
+      <b:if cond="data:blog.postImageThumbnailUrl"> <link expr:href="data:blog.postImageThumbnailUrl" rel="image_src" /> </b:if
     ></b:if>
     <b:if cond="data:blog.url == data:blog.homepageUrl">
       <b:if cond='data:blog.pageType == "item"'>
@@ -177,7 +175,7 @@
       #header-inner a:hover {color:#ff2965;}
       #header {float:left;min-width:257px;padding:0 5px;background:rgba(0,0,0,0.75);height:100%;
       min-height:300px;padding:0 5px;}
-      #header h1, #header p {font-family:&#39;Open Sans&#39;;font-size:300%;font-weight:700;color:#fff;text-transform:uppercase;padding-left:15px;}
+      #header h1, #header p {font-family:&#39;Open Sans&#39;;font-size:300%;font-weight:700;color:#fff;text-transform:uppercase;}
       #header a {color:#fff;text-decoration:none;transition:all 0.3s ease-out;}
       #header a:hover {color:#ff2965;}
       #header .description {font-family:&#39;Open Sans&#39;;font-size:100%;font-weight:400;color:#fff;text-transform:none;}
@@ -784,6 +782,7 @@
 
       @media (max-width:767px) {
       .mainWrap {width:auto;padding:50px 20px;}
+      .ttw{background-color: rgba(0,0,0,0.75)}
       .menu {display:none;}
       .responsive-menu {display:block;}
       nav {margin:0;background:none;}
@@ -800,6 +799,7 @@
 
       @media only screen and (max-width:640px){
       #header h1,#header p,#header,.header-right,#header .description{margin:0 auto;width:100%;float:none;text-align:center;}
+      .ttw{background-color: rgba(0,0,0,0.75)}
       .header-right{float:none;margin:0 auto;text-align:center;}
       .header-right img, .header-right iframe{float:none;margin:0 auto;text-align:center;}
       #header-wrapper{padding:0;margin:20px 0 0 0;min-height:150px;}
@@ -861,7 +861,7 @@
         #related-post ul {list-style:none;margin:0;padding:0;}
         #related-post a {font-size:14px;color:#333;}
         #related-post a:hover {color:#555;}
-        #subscribe-css {margin:0;padding:0;float:right;display:block;position:relative;}
+        #subscribe-css {margin:0;padding:0;display:flex;justify-content: center;align-items: center;align-content: center;flex-wrap: nowrap;}
         .subscribe-wrapper {background:#4b5f65;width:260px;height:200px;color:#fff;font-size:14px;font-family:&#39;Open Sans&#39;;line-height:20px;padding:40px 20px 10px 20px;text-align:center;border-radius:3px;}
         .subscribe-wrapper p {margin:0;margin-bottom:30px;}
         .subscribe-form {clear:both;display:block;margin:10px 0;overflow:hidden;}
@@ -1160,7 +1160,7 @@
                 <b:else />
                 <!--No header image -->
                 <div id="header-inner">
-                  <div class="titlewrapper">
+                  <div class="titlewrapper ttw">
                     <h1 class="title">
                       <b:include name="title" />
                     </h1>
@@ -1170,7 +1170,7 @@
               </b:if>
             </b:includable>
             <b:includable id="description">
-              <div class="descriptionwrapper">
+              <div class="descriptionwrapper ttw">
                 <p class="description">
                   <span><data:description /></span>
                 </p>
@@ -1700,8 +1700,7 @@
                               </div>
                               <span class="comment_service">
                                 <span class="comment_date"
-                                  ><a expr:href="data:comment.url" rel="nofollow" title="comment permalink">
-                                    <data:comment.timestamp /> </a
+                                  ><a expr:href="data:comment.url" rel="nofollow" title="comment permalink"> <data:comment.timestamp /> </a
                                 ></span>
                                 <b:include data="comment" name="commentDeleteIcon" />
                               </span>
@@ -2423,26 +2422,6 @@
 
                         <b:if cond='data:blog.pageType == "item"'>
                           <div id="subs-and-redat">
-                            <div class="kotakleft">
-                              <div class="related-post" id="related-post" />
-                              <script type="text/javascript">
-                                var labelArray = [<b:if cond='data:post.labels'><b:loop values='data:post.labels' var='label'>
-                                        &quot;<data:label.name/>&quot;<b:if cond='data:label.isLast != &quot;true&quot;'>,</b:if>
-                                    </b:loop></b:if>];
-                                var relatedPostConfig = {
-                                    homePage: &quot;<data:blog.homepageUrl/>&quot;,
-                                    widgetTitle: &quot;&lt;h4&gt;Related Post&lt;/h4&gt;&quot;,
-                                    numPosts: 5,
-                                    titleLength: &quot;auto&quot;,
-                                    containerId: &quot;related-post&quot;,
-                                    newTabLink: false,
-                                    widgetStyle: 1,
-                                    callBack: function() {}
-                                };
-                              </script>
-                              <script src="https://arlina-design.googlecode.com/svn/trunk/javascript/relatedpost.js" type="text/javascript" />
-                              <div style="clear: both" />
-                            </div>
                             <div id="subscribe-css">
                               <div class="subscribe-wrapper">
                                 <p>Sign up here with your email</p>
